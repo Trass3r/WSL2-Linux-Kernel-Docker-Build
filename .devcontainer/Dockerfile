@@ -2,9 +2,11 @@
 ARG VARIANT="focal"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
-RUN	apt update && apt upgrade \
-&&	apt -y install --no-install-recommends \
-	build-essential g++-10 \
+RUN	apt update && apt upgrade -y
+
+# gcc is referenced directly, so use build-essential
+RUN	apt install -y --no-install-recommends \
+	build-essential g++-8 \
 	flex bison \
 	libbabeltrace-ctf-dev \
 	systemtap-sdt-dev \
